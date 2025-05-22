@@ -2,8 +2,7 @@ package com.libGdx.test.base.type;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -19,23 +18,25 @@ import com.kw.gdx.listener.OrdinaryButtonListener;
 import com.kw.gdx.utils.ConvertUtil;
 import com.libGdx.test.base.MyStage3D;
 
-public class DirLightGroup extends Table {
+public class AdmitLightGroup extends Table {
+    private ColorAttribute colorAttribute;
+    private MyStage3D stage3D;
     private Group rGroup;
     private Group gGroup;
     private Group bGroup;
     private Group aGroup;
-    private Group xGroup;
-    private Group yGroup;
-    private Group zGroup;
-    private DirectionalLight directionalLight;
-    public DirLightGroup(Stage3D stage3D){
-        setSize(400,400);
-        directionalLight = new DirectionalLight().set(1, 1, 1, -0, -0.2f, -0.5f);
+//    private Group xGroup;
+//    private Group yGroup;
+//    private Group zGroup;
 
-        ((MyStage3D) stage3D).addBaseLight(directionalLight);
+    public AdmitLightGroup(Stage3D stage3D){
+        setSize(600,400);
+        this.stage3D = (MyStage3D) stage3D;
+        colorAttribute = new ColorAttribute(ColorAttribute.AmbientLight, 1, 1, 1, 1f);
+        ((MyStage3D) stage3D).addColorAttribute(colorAttribute);
         {
             Label label = new Label("AdmitLight", new Label.LabelStyle() {{
-                font = Asset.getAsset().loadBitFont("font.fnt");
+                font = Asset.getAsset().loadBitFont("Bahnschrift-Regular_40_1.fnt");
             }});
             add(label).pad(10);
             label.setAlignment(Align.left);
@@ -57,21 +58,21 @@ public class DirLightGroup extends Table {
             add(aGroup).pad(10);
             aGroup.setPosition(0, 0);
         }
-        {
-            row();
-            xGroup = createTextField("x", 4);
-            add(xGroup).pad(10);
-            xGroup.setPosition(0,0);
-            row();
-            yGroup = createTextField("y", 4);
-            add(yGroup).pad(10);
-            yGroup.setPosition(0,0);
-            row();
-            zGroup = createTextField("z", 4);
-            add(zGroup).pad(10);
-            zGroup.setPosition(0,0);
-            row();
-        }
+//        {
+//            row();
+//            xGroup = createTextField("x", 4);
+//            add(xGroup).pad(10);
+//            xGroup.setPosition(0,0);
+//            row();
+//            yGroup = createTextField("y", 4);
+//            add(yGroup).pad(10);
+//            yGroup.setPosition(0,0);
+//            row();
+//            zGroup = createTextField("z", 4);
+//            add(zGroup).pad(10);
+//            zGroup.setPosition(0,0);
+//            row();
+//        }
 
         Image queding = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
         add(queding);
@@ -83,12 +84,7 @@ public class DirLightGroup extends Table {
                 float g = getValue(gGroup,"g");
                 float b = getValue(bGroup,"b");
                 float a = getValue(aGroup,"a");
-                float dx = getValue(xGroup,"x");
-                float dy = getValue(yGroup,"y");
-                float dz = getValue(zGroup,"z");
-                System.out.println("---------------------");
-                directionalLight.color.set(r,g,b,a);
-                directionalLight.direction.set(dx,dy,dz);
+                colorAttribute.color.set(r,g,b,a);
             }
         });
         pad(10);
@@ -97,9 +93,9 @@ public class DirLightGroup extends Table {
 
     private float getValue(Group rGroup,String name) {
         TextField r = rGroup.findActor(name);
-        System.out.println(name);
         return ConvertUtil.convertToFloat(r.getText(),0);
     }
+
 
     private Group createTextField(String name, int i) {
         TextField field = new TextField("",new TextField.TextFieldStyle(){{
@@ -112,12 +108,12 @@ public class DirLightGroup extends Table {
             fontColor = Color.BLACK;
         }
         });
-        field.setSize(200,50);
+        field.setSize(400,50);
         field.setName(name);
         field.setMessageText(name);
         Group group = new Group();
         group.addActor(field);
-        group.setSize(200,50);
+        group.setSize(400,50);
         return group;
     }
 

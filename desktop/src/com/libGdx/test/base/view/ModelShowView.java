@@ -21,8 +21,10 @@ public class ModelShowView extends BaseActor3DGroup {
 
         Model deskModel = Asset3D.getAsset3D().getModel(modePath);
         modelActor3D = new ModelActor3D(deskModel);
-//        addActor3D(modelActor3D);
+        addActor3D(modelActor3D);
+        modelActor3D.setFromAxis(1,0,0,90);
         modelActor3D.setScale(100,100,100);
+        modelActor3D.setPosition(0,0,-300);
         Texture woodTexture = Asset.getAsset().getTexture(bgPicPath);
         woodTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         woodTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

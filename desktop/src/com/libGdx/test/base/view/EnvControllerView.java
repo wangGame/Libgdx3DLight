@@ -1,5 +1,6 @@
 package com.libGdx.test.base.view;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -26,48 +27,45 @@ public class EnvControllerView extends Group {
         Image shadow = Layer.getShadow();
         shadow.setSize(getWidth(),getHeight());
         addActor(shadow);
+        shadow.setColor(Color.BLACK);
         shadow.getColor().a = 0.8f;
         contable = new Table();
         contable.align(Align.topLeft);
         scrollPane = new ScrollPane(contable,new ScrollPane.ScrollPaneStyle());
         addActor(scrollPane);
         addActor(new Table(){{
-        contable.add(new AdmitLightGroup(stage3D));
-        contable.row();
-        contable.pack();
+            contable.add(new AdmitLightGroup(stage3D));
+            contable.row();
+            contable.pack();
 
+            Image addDirLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+            add(addDirLight);
+            addDirLight.addListener(new OrdinaryButtonListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    contable.add(new DirLightGroup(stage3D));
+                    contable.row();
+                    contable.pack();
+                }
+            });
 
-        Image addDirLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
-        add(addDirLight);
-        addDirLight.addListener(new OrdinaryButtonListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                contable.add(new DirLightGroup(stage3D));
-                contable.row();
-                contable.pack();
-            }
-        });
-
-        Image addPointLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
-        add(addPointLight);
-        addPointLight.addListener(new OrdinaryButtonListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                contable.add(new PointLightGroup(stage3D));
-                contable.row();
-                contable.pack();
-            }
-        });
-        pack();
+            Image addPointLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+            add(addPointLight);
+            addPointLight.addListener(new OrdinaryButtonListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    contable.add(new PointLightGroup(stage3D));
+                    contable.row();
+                    contable.pack();
+                }
+            });
+            pack();
 
         }});
-
-
-        setDebug(true);
-
-        scrollPane.setSize(600, Constant.GAMEHIGHT);
+        scrollPane.setSize(600, Constant.GAMEHIGHT-200);
+        scrollPane.setY(200);
         /*
         *
         *  environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));//环境光

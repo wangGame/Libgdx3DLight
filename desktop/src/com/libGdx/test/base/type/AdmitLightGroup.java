@@ -35,7 +35,8 @@ public class AdmitLightGroup extends Table {
         colorAttribute = new ColorAttribute(ColorAttribute.AmbientLight, 1, 1, 1, 1f);
         ((MyStage3D) stage3D).addColorAttribute(colorAttribute);
         {
-            Label label = new Label("AdmitLight", new Label.LabelStyle() {{
+            String simpleName = getClass().getSimpleName();
+            Label label = new Label(simpleName, new Label.LabelStyle() {{
                 font = Asset.getAsset().loadBitFont("Bahnschrift-Regular_40_1.fnt");
             }});
             add(label).pad(10);
@@ -73,7 +74,7 @@ public class AdmitLightGroup extends Table {
 //            zGroup.setPosition(0,0);
 //            row();
 //        }
-
+        row();
         Image queding = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
         add(queding);
         queding.addListener(new OrdinaryButtonListener(){

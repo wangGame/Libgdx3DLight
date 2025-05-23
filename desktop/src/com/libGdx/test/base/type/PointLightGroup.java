@@ -35,7 +35,8 @@ public class PointLightGroup extends Table {
         pointLightGroup = new PointLight().set(1.0f, 0f, 0f, 0.0f, 4.0f, 0.0f, 1140.3f);
         ((MyStage3D) stage3D).addBaseLight(pointLightGroup);
         {
-            Label label = new Label("AdmitLight", new Label.LabelStyle() {{
+            String simpleName = getClass().getSimpleName();
+            Label label = new Label(simpleName, new Label.LabelStyle() {{
                 font = Asset.getAsset().loadBitFont("font.fnt");
             }});
             add(label).pad(10);
@@ -109,6 +110,7 @@ public class PointLightGroup extends Table {
         return ConvertUtil.convertToFloat(r.getText(),0);
     }
 
+
     private Group createTextField(String name, int i) {
         TextField field = new TextField("",new TextField.TextFieldStyle(){{
             font = Asset.getAsset().loadBitFont("font.fnt");
@@ -120,13 +122,12 @@ public class PointLightGroup extends Table {
             fontColor = Color.BLACK;
         }
         });
-        field.setSize(200,50);
+        field.setSize(400,50);
         field.setName(name);
         field.setMessageText(name);
         Group group = new Group();
         group.addActor(field);
-        group.setSize(200,50);
+        group.setSize(400,50);
         return group;
     }
-
 }

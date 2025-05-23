@@ -31,10 +31,10 @@ public class DirLightGroup extends Table {
     public DirLightGroup(Stage3D stage3D){
         setSize(400,400);
         directionalLight = new DirectionalLight().set(1, 1, 1, -0, -0.2f, -0.5f);
-
+        String simpleName = this.getClass().getSimpleName();
         ((MyStage3D) stage3D).addBaseLight(directionalLight);
         {
-            Label label = new Label("AdmitLight", new Label.LabelStyle() {{
+            Label label = new Label(simpleName, new Label.LabelStyle() {{
                 font = Asset.getAsset().loadBitFont("font.fnt");
             }});
             add(label).pad(10);
@@ -97,7 +97,6 @@ public class DirLightGroup extends Table {
 
     private float getValue(Group rGroup,String name) {
         TextField r = rGroup.findActor(name);
-        System.out.println(name);
         return ConvertUtil.convertToFloat(r.getText(),0);
     }
 
@@ -112,13 +111,12 @@ public class DirLightGroup extends Table {
             fontColor = Color.BLACK;
         }
         });
-        field.setSize(200,50);
+        field.setSize(400,50);
         field.setName(name);
         field.setMessageText(name);
         Group group = new Group();
         group.addActor(field);
-        group.setSize(200,50);
+        group.setSize(400,50);
         return group;
     }
-
 }

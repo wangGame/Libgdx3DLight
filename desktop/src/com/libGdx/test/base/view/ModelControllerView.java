@@ -42,5 +42,7 @@ public class ModelControllerView extends Group {
         addActor(bg);
         bg.setSize(600,300);
         bg.setY(getHeight()-100,Align.top);
+
+
     }
 }

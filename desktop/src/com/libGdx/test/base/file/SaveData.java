@@ -64,7 +64,7 @@ public class SaveData {
     }
 
     public void getDirR(float v){
-        getFloatData("DirR",v);
+        getFloatData("DirR");
     }
 
     public void saveDirG(float v){

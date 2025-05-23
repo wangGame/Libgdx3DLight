@@ -34,6 +34,7 @@ public class GameScreen extends BaseScreen3D {
 
         ModelControllerView controllerView = new ModelControllerView(modelShowView);
         addActor(controllerView);
+
         controllerView.setX(Constant.GAMEWIDTH, Align.right);
         EnvControllerView envControllerView = new EnvControllerView(stage3D);
         addActor(envControllerView);

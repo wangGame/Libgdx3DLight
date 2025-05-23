@@ -34,11 +34,12 @@ public class DirLightGroup extends Table {
         String simpleName = this.getClass().getSimpleName();
         ((MyStage3D) stage3D).addBaseLight(directionalLight);
         {
+            align(Align.center);
             Label label = new Label(simpleName, new Label.LabelStyle() {{
                 font = Asset.getAsset().loadBitFont("font.fnt");
             }});
             add(label).pad(10);
-            label.setAlignment(Align.left);
+            label.setAlignment(Align.center);
             label.setPosition(0, getHeight(), Align.topLeft);
             row();
             rGroup = createTextField("r", 4);
@@ -73,8 +74,8 @@ public class DirLightGroup extends Table {
             row();
         }
 
-        Image queding = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
-        add(queding);
+        Image queding = new Image(Asset.getAsset().getTexture("btn/ok.png"));
+        add(queding).colspan(1);
         queding.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -92,13 +93,14 @@ public class DirLightGroup extends Table {
             }
         });
 
-        Image delete = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
-        add(delete);
+        Image delete = new Image(Asset.getAsset().getTexture("btn/delete.png"));
+        add(delete).colspan(1);
         delete.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 DirLightGroup.this.remove();
+                ((MyStage3D) stage3D).removeBaseLight(directionalLight);
             }
         });
 

@@ -25,7 +25,7 @@ public class AdmitLightGroup extends Table {
     private Group gGroup;
     private Group bGroup;
     private Group aGroup;
-//    private Group xGroup;
+    private Group indsGroup;
 //    private Group yGroup;
 //    private Group zGroup;
 
@@ -58,6 +58,12 @@ public class AdmitLightGroup extends Table {
             aGroup = createTextField("a", 4);
             add(aGroup).pad(10);
             aGroup.setPosition(0, 0);
+            row();
+            indsGroup = createTextField("i", 4);
+            add(indsGroup).pad(10);
+            indsGroup.setPosition(0, 0);
+            row();
+
         }
 //        {
 //            row();
@@ -75,7 +81,7 @@ public class AdmitLightGroup extends Table {
 //            row();
 //        }
         row();
-        Image queding = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+        Image queding = new Image(Asset.getAsset().getTexture("btn/ok.png"));
         add(queding);
         queding.addListener(new OrdinaryButtonListener(){
             @Override
@@ -85,7 +91,15 @@ public class AdmitLightGroup extends Table {
                 float g = getValue(gGroup,"g");
                 float b = getValue(bGroup,"b");
                 float a = getValue(aGroup,"a");
-                colorAttribute.color.set(r,g,b,a);
+                float i = getValue(indsGroup,"i");
+                if (i<=0){
+                    i = 1;
+                }
+//                colorAttribute.color.set(r,g,b,a);
+                colorAttribute.color.r = r * i;
+                colorAttribute.color.g = g * i;
+                colorAttribute.color.b = b * i;
+
             }
         });
         pad(10);

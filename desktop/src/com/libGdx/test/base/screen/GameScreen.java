@@ -27,7 +27,7 @@ public class GameScreen extends BaseScreen3D {
     public void initView() {
         super.initView();
 
-        ModelShowView modelShowView = new ModelShowView();
+        ModelShowView modelShowView = new ModelShowView(stage3D);
         stage3D.addActor(modelShowView);
         modelShowView.setPosition(0,0,0);
 

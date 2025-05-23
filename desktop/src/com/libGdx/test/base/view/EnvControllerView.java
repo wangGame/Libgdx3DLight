@@ -20,10 +20,9 @@ import com.libGdx.test.base.type.PointLightGroup;
 public class EnvControllerView extends Group {
     private ScrollPane scrollPane;
     private Table contable;
-    private MyStage3D stage3D;
+
     public EnvControllerView(Stage3D stage3D){
         setSize(600,Constant.GAMEHIGHT);
-        this.stage3D = (MyStage3D) stage3D;
         Image shadow = Layer.getShadow();
         shadow.setSize(getWidth(),getHeight());
         addActor(shadow);
@@ -34,10 +33,11 @@ public class EnvControllerView extends Group {
         scrollPane = new ScrollPane(contable,new ScrollPane.ScrollPaneStyle());
         addActor(scrollPane);
         addActor(new Table(){{
+            align(Align.center);
             contable.add(new AdmitLightGroup(stage3D));
             contable.row();
             contable.pack();
-            Image addDirLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+            Image addDirLight = new Image(Asset.getAsset().getTexture("btn/zsgBtn.png"));
             add(addDirLight);
             addDirLight.addListener(new OrdinaryButtonListener(){
                 @Override
@@ -49,8 +49,8 @@ public class EnvControllerView extends Group {
                 }
             });
 
-            Image addPointLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
-            add(addPointLight);
+            Image addPointLight = new Image(Asset.getAsset().getTexture("btn/pLight.png"));
+            add(addPointLight).pad(30);
             addPointLight.addListener(new OrdinaryButtonListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -60,31 +60,12 @@ public class EnvControllerView extends Group {
                     contable.pack();
                 }
             });
+            pad(40);
             pack();
 
         }});
         scrollPane.setSize(600, Constant.GAMEHIGHT-200);
         scrollPane.setY(200);
-        /*
-        *
-        *  environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));//环境光
-        //投影
-        environment.add((shadowLight = new DirectionalShadowLight(1024, 1024,
-                30f, 30f, 1f, 100f)).
-                set(0.8f, 0.8f, 0.8f, -1f, -.5f, -.2f));
-        environment.shadowMap = (ShadowMap) shadowLight;
-        DirectionalLight set = new DirectionalLight().set(1f, 1f, 1f, 30, -30, 1);
-        float intensity = 0.4f;
-        Color color = Color.valueOf("#FFF4D6");
-        color.r = color.r * intensity;
-        color.g = color.g * intensity;
-        color.b = color.b * intensity;
-        color.a = 0.1f;
-        set.setColor(color);
-        environment.add(set);
-        PointLight set1 = new PointLight().set(1.0f, 0f, 0f, 0.0f, 4.0f, 0.0f, 1140.3f);
-        environment.add(set1);
-        * */
 
     }
 

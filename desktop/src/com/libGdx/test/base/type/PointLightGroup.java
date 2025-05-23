@@ -80,9 +80,8 @@ public class PointLightGroup extends Table {
 
         }
 
-        Image queding = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+        Image queding = new Image(Asset.getAsset().getTexture("btn/ok.png"));
         add(queding);
-        debugAll();
         queding.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,13 +101,14 @@ public class PointLightGroup extends Table {
             }
         });
 
-        Image delete = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+        Image delete = new Image(Asset.getAsset().getTexture("btn/delete.png"));
         add(delete);
         delete.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 PointLightGroup.this.remove();
+                ((MyStage3D) stage3D).removeBaseLight(pointLightGroup);
             }
         });
 

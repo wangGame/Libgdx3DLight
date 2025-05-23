@@ -21,6 +21,9 @@ public class MyStage3D extends Stage3D {
     protected void initLight() {
         baseLights = new Array<>();
         shadowLight = new DirectionalShadowLight(1024, 1024, 30f, 30f, 1f, 100f);
+//        eg。
+//
+//
 //        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1, 1, 1, 1f));//环境光
 //        DirectionalLight set = new DirectionalLight().set(1f, 0f, 0f, 1, -1, 1);
 //        environment.add(set);
@@ -46,8 +49,8 @@ public class MyStage3D extends Stage3D {
     }
 
     public void removeBaseLight(BaseLight baseLight){
-        baseLights.add(baseLight);
-        environment.add(baseLight);
+        baseLights.removeValue(baseLight,false);
+        environment.remove(baseLight);
     }
 
     public void addColorAttribute(ColorAttribute colorAttribute) {

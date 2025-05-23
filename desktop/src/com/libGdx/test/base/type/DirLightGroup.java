@@ -18,6 +18,7 @@ import com.kw.gdx.d3.stage.Stage3D;
 import com.kw.gdx.listener.OrdinaryButtonListener;
 import com.kw.gdx.utils.ConvertUtil;
 import com.libGdx.test.base.MyStage3D;
+import com.libGdx.test.base.file.SaveData;
 
 public class DirLightGroup extends Table {
     private Group rGroup;
@@ -42,33 +43,33 @@ public class DirLightGroup extends Table {
             label.setAlignment(Align.center);
             label.setPosition(0, getHeight(), Align.topLeft);
             row();
-            rGroup = createTextField("r", 4);
+            rGroup = createTextField("r", SaveData.getSaveData().getDirR());
             add(rGroup).colspan(2).pad(10);
             rGroup.setPosition(0, 0);
             row();
-            gGroup = createTextField("g", 4);
+            gGroup = createTextField("g", SaveData.getSaveData().getDirG());
             add(gGroup).colspan(2).pad(10);
             gGroup.setPosition(0, 0);
             row();
-            bGroup = createTextField("b", 4);
+            bGroup = createTextField("b", SaveData.getSaveData().getDirB());
             add(bGroup).colspan(2).pad(10);
             bGroup.setPosition(0, 0);
             row();
-            aGroup = createTextField("a", 4);
+            aGroup = createTextField("a", SaveData.getSaveData().getDirA());
             add(aGroup).colspan(2).pad(10);
             aGroup.setPosition(0, 0);
         }
         {
             row();
-            xGroup = createTextField("x", 4);
+            xGroup = createTextField("x", SaveData.getSaveData().getDirX());
             add(xGroup).colspan(2).pad(10);
             xGroup.setPosition(0,0);
             row();
-            yGroup = createTextField("y", 4);
+            yGroup = createTextField("y", SaveData.getSaveData().getDirY());
             add(yGroup).colspan(2).pad(10);
             yGroup.setPosition(0,0);
             row();
-            zGroup = createTextField("z", 4);
+            zGroup = createTextField("z", SaveData.getSaveData().getDirZ());
             add(zGroup).colspan(2).pad(10);
             zGroup.setPosition(0,0);
             row();
@@ -76,6 +77,7 @@ public class DirLightGroup extends Table {
 
         Image queding = new Image(Asset.getAsset().getTexture("btn/ok.png"));
         add(queding).colspan(1);
+        queding.setOrigin(Align.center);
         queding.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -87,7 +89,19 @@ public class DirLightGroup extends Table {
                 float dx = getValue(xGroup,"x");
                 float dy = getValue(yGroup,"y");
                 float dz = getValue(zGroup,"z");
-                System.out.println("---------------------");
+
+
+
+                SaveData.getSaveData().saveDirR(r);
+                SaveData.getSaveData().saveDirG(g);
+                SaveData.getSaveData().saveDirB(b);
+                SaveData.getSaveData().saveDirA(a);
+                SaveData.getSaveData().saveDirX(dx);
+                SaveData.getSaveData().saveDirX(dy);
+                SaveData.getSaveData().saveDirX(dz);
+
+
+
                 directionalLight.color.set(r,g,b,a);
                 directionalLight.direction.set(dx,dy,dz);
             }
@@ -95,6 +109,7 @@ public class DirLightGroup extends Table {
 
         Image delete = new Image(Asset.getAsset().getTexture("btn/delete.png"));
         add(delete).colspan(1);
+        delete.setOrigin(Align.center);
         delete.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -104,6 +119,8 @@ public class DirLightGroup extends Table {
             }
         });
 
+        directionalLight.color.set(SaveData.getSaveData().getDirR(),SaveData.getSaveData().getDirG(),SaveData.getSaveData().getDirB(),SaveData.getSaveData().getDirA());
+        directionalLight.direction.set(SaveData.getSaveData().getDirX(),SaveData.getSaveData().getDirY(),SaveData.getSaveData().getDirZ());
 
         pad(10);
         pack();
@@ -114,7 +131,7 @@ public class DirLightGroup extends Table {
         return ConvertUtil.convertToFloat(r.getText(),0);
     }
 
-    private Group createTextField(String name, int i) {
+    private Group createTextField(String name, float i) {
         TextField field = new TextField("",new TextField.TextFieldStyle(){{
             font = Asset.getAsset().loadBitFont("font.fnt");
             background = new NinePatchDrawable(
@@ -127,6 +144,7 @@ public class DirLightGroup extends Table {
         });
         field.setSize(400,50);
         field.setName(name);
+        field.setText(i+"");
         field.setMessageText(name);
         Group group = new Group();
         group.addActor(field);

@@ -26,6 +26,7 @@ public class GameScreen extends BaseScreen3D {
     @Override
     public void initView() {
         super.initView();
+        Constant.viewColor.set(1,1,1,1);
 
         ModelShowView modelShowView = new ModelShowView(stage3D);
         stage3D.addActor(modelShowView);

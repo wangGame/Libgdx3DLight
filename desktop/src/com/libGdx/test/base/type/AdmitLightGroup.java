@@ -17,6 +17,7 @@ import com.kw.gdx.d3.stage.Stage3D;
 import com.kw.gdx.listener.OrdinaryButtonListener;
 import com.kw.gdx.utils.ConvertUtil;
 import com.libGdx.test.base.MyStage3D;
+import com.libGdx.test.base.file.SaveData;
 
 public class AdmitLightGroup extends Table {
     private ColorAttribute colorAttribute;
@@ -43,23 +44,23 @@ public class AdmitLightGroup extends Table {
             label.setAlignment(Align.left);
             label.setPosition(0, getHeight(), Align.topLeft);
             row();
-            rGroup = createTextField("r", 4);
+            rGroup = createTextField("r", SaveData.getSaveData().getAdmitLightR());
             add(rGroup).colspan(2).pad(10);
             rGroup.setPosition(0, 0);
             row();
-            gGroup = createTextField("g", 4);
+            gGroup = createTextField("g", SaveData.getSaveData().getAdmitLightG());
             add(gGroup).pad(10);
             gGroup.setPosition(0, 0);
             row();
-            bGroup = createTextField("b", 4);
+            bGroup = createTextField("b", SaveData.getSaveData().getAdmitLightB());
             add(bGroup).pad(10);
             bGroup.setPosition(0, 0);
             row();
-            aGroup = createTextField("a", 4);
+            aGroup = createTextField("a", SaveData.getSaveData().getAdmitLightA());
             add(aGroup).pad(10);
             aGroup.setPosition(0, 0);
             row();
-            indsGroup = createTextField("i", 4);
+            indsGroup = createTextField("i", 1f);
             add(indsGroup).pad(10);
             indsGroup.setPosition(0, 0);
             row();
@@ -83,6 +84,7 @@ public class AdmitLightGroup extends Table {
         row();
         Image queding = new Image(Asset.getAsset().getTexture("btn/ok.png"));
         add(queding);
+        queding.setOrigin(Align.center);
         queding.addListener(new OrdinaryButtonListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -95,6 +97,11 @@ public class AdmitLightGroup extends Table {
                 if (i<=0){
                     i = 1;
                 }
+                SaveData.getSaveData().saveAdmitLightR(r);
+                SaveData.getSaveData().saveAdmitLightG(g);
+                SaveData.getSaveData().saveAdmitLightB(b);
+                SaveData.getSaveData().saveAdmitLightA(a);
+
 //                colorAttribute.color.set(r,g,b,a);
                 colorAttribute.color.r = r * i;
                 colorAttribute.color.g = g * i;
@@ -104,6 +111,10 @@ public class AdmitLightGroup extends Table {
         });
         pad(10);
         pack();
+
+        colorAttribute.color.r =  SaveData.getSaveData().getAdmitLightR();
+        colorAttribute.color.g =  SaveData.getSaveData().getAdmitLightG();
+        colorAttribute.color.b =  SaveData.getSaveData().getAdmitLightB();
     }
 
     private float getValue(Group rGroup,String name) {
@@ -112,7 +123,7 @@ public class AdmitLightGroup extends Table {
     }
 
 
-    private Group createTextField(String name, int i) {
+    private Group createTextField(String name, float i) {
         TextField field = new TextField("",new TextField.TextFieldStyle(){{
             font = Asset.getAsset().loadBitFont("font.fnt");
             background = new NinePatchDrawable(
@@ -128,6 +139,7 @@ public class AdmitLightGroup extends Table {
         field.setMessageText(name);
         Group group = new Group();
         group.addActor(field);
+        field.setText(i+"");
         group.setSize(400,50);
         return group;
     }

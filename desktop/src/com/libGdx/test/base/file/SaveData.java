@@ -39,59 +39,80 @@ public class SaveData {
         flushFloat("AdmitLightG",v);
     }
 
-    public void getAdmitLightG(){
-        getFloatData("AdmitLightG");
+    public float getAdmitLightG(){
+        return getFloatData("AdmitLightG");
     }
 
     public void saveAdmitLightB(float v){
         flushFloat("AdmitLightB",v);
     }
 
-    public void getAdmitLightB(){
-        getFloatData("AdmitLightB");
+    public float getAdmitLightB(){
+        return getFloatData("AdmitLightB");
     }
 
     public void saveAdmitLightA(float v){
         flushFloat("AdmitLightA",v);
     }
 
-    public void getAdmitLightA(){
-        getFloatData("AdmitLightA");
+    public float getAdmitLightA(){
+        return getFloatData("AdmitLightA");
     }
     //DIR
     public void saveDirR(float v){
         flushFloat("DirR",v);
     }
 
-    public void getDirR(float v){
-        getFloatData("DirR");
+    public float getDirR(){
+        return getFloatData("DirR");
     }
 
     public void saveDirG(float v){
         flushFloat("DirG",v);
     }
 
+    public float getDirG(){
+        return getFloatData("DirG");
+    }
+
     public void saveDirB(float v){
         flushFloat("DirB",v);
+    }
+
+    public float getDirB(){
+        return getFloatData("DirB");
     }
 
     public void saveDirA(float v){
         flushFloat("DirA",v);
     }
 
+    public float getDirA(){
+        return getFloatData("DirA");
+    }
 
     public void saveDirX(float v){
         flushFloat("DirX",v);
     }
 
+    public float getDirX(){
+        return getFloatData("DirX");
+    }
 
     public void saveDirY(float v){
         flushFloat("DirY",v);
     }
 
+    public float getDirY(){
+        return getFloatData("DirY");
+    }
 
     public void saveDirZ(float v){
         flushFloat("DirZ",v);
+    }
+
+    public float getDirZ(){
+        return getFloatData("DirZ");
     }
     //point
 

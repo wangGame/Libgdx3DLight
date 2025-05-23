@@ -29,6 +29,6 @@ public class ModelList extends Group {
                 modelShowView.updateModel("model/"+fileHandle.name());
             }
         });
-        label.setColor(Color.BLACK);
+
     }
 }

@@ -21,7 +21,7 @@ public class ModelShowView extends BaseActor3DGroup {
 
         Model deskModel = Asset3D.getAsset3D().getModel(modePath);
         modelActor3D = new ModelActor3D(deskModel);
-        addActor3D(modelActor3D);
+//        addActor3D(modelActor3D);
         modelActor3D.setScale(100,100,100);
         Texture woodTexture = Asset.getAsset().getTexture(bgPicPath);
         woodTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
@@ -62,5 +62,11 @@ public class ModelShowView extends BaseActor3DGroup {
         woodTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         woodTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         kitchenModel.setMaterialTexture(woodTexture);
+    }
+
+    public void updateModelScale(float scaleXV, float scaleYV, float scaleZV) {
+        if (kitchenModel!=null) {
+            kitchenModel.setScale(scaleXV,scaleYV,scaleZV);
+        }
     }
 }

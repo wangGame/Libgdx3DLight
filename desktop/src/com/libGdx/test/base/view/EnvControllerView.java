@@ -30,14 +30,13 @@ public class EnvControllerView extends Group {
         shadow.setColor(Color.BLACK);
         shadow.getColor().a = 0.8f;
         contable = new Table();
-        contable.align(Align.topLeft);
+        contable.align(Align.top);
         scrollPane = new ScrollPane(contable,new ScrollPane.ScrollPaneStyle());
         addActor(scrollPane);
         addActor(new Table(){{
             contable.add(new AdmitLightGroup(stage3D));
             contable.row();
             contable.pack();
-
             Image addDirLight = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
             add(addDirLight);
             addDirLight.addListener(new OrdinaryButtonListener(){

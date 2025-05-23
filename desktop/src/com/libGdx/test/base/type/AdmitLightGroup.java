@@ -44,7 +44,7 @@ public class AdmitLightGroup extends Table {
             label.setPosition(0, getHeight(), Align.topLeft);
             row();
             rGroup = createTextField("r", 4);
-            add(rGroup).pad(10);
+            add(rGroup).colspan(2).pad(10);
             rGroup.setPosition(0, 0);
             row();
             gGroup = createTextField("g", 4);

@@ -42,33 +42,33 @@ public class DirLightGroup extends Table {
             label.setPosition(0, getHeight(), Align.topLeft);
             row();
             rGroup = createTextField("r", 4);
-            add(rGroup).pad(10);
+            add(rGroup).colspan(2).pad(10);
             rGroup.setPosition(0, 0);
             row();
             gGroup = createTextField("g", 4);
-            add(gGroup).pad(10);
+            add(gGroup).colspan(2).pad(10);
             gGroup.setPosition(0, 0);
             row();
             bGroup = createTextField("b", 4);
-            add(bGroup).pad(10);
+            add(bGroup).colspan(2).pad(10);
             bGroup.setPosition(0, 0);
             row();
             aGroup = createTextField("a", 4);
-            add(aGroup).pad(10);
+            add(aGroup).colspan(2).pad(10);
             aGroup.setPosition(0, 0);
         }
         {
             row();
             xGroup = createTextField("x", 4);
-            add(xGroup).pad(10);
+            add(xGroup).colspan(2).pad(10);
             xGroup.setPosition(0,0);
             row();
             yGroup = createTextField("y", 4);
-            add(yGroup).pad(10);
+            add(yGroup).colspan(2).pad(10);
             yGroup.setPosition(0,0);
             row();
             zGroup = createTextField("z", 4);
-            add(zGroup).pad(10);
+            add(zGroup).colspan(2).pad(10);
             zGroup.setPosition(0,0);
             row();
         }
@@ -91,6 +91,18 @@ public class DirLightGroup extends Table {
                 directionalLight.direction.set(dx,dy,dz);
             }
         });
+
+        Image delete = new Image(Asset.getAsset().getTexture("ButtonBackground.png"));
+        add(delete);
+        delete.addListener(new OrdinaryButtonListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                DirLightGroup.this.remove();
+            }
+        });
+
+
         pad(10);
         pack();
     }

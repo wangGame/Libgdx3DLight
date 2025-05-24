@@ -12,13 +12,14 @@ import com.libGdx.test.base.view.ModelShowView;
 public class BgItem extends Group {
     public BgItem(String pre,FileHandle fileHandle, Runnable runnable){
         String name = fileHandle.name();
-        setSize(190,190);
+        setDebug(true);
+        setSize(100,100);
         Image image = new Image(Asset.getAsset().getTexture(pre+name));
         addActor(image);
         image.setOrigin(Align.center);
-        float min = Math.min(image.getWidth() / 190, image.getHeight() / 190f);
+        float min = Math.max(image.getWidth() / getWidth(), image.getHeight() / getHeight());
         image.setScale(1.f/min);
-        image.setPosition(100,100,Align.center);
+        image.setPosition(getWidth()/2f,getHeight()/2f,Align.center);
 
 
         addListener(new OrdinaryButtonListener(){

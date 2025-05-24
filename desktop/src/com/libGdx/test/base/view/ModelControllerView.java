@@ -33,6 +33,10 @@ public class ModelControllerView extends Group {
         shadow.setColor(Color.BLACK);
         shadow.getColor().a = 1f;
         {
+
+            Image bgBG = Layer.getShadow();
+            addActor(bgBG);
+
             ScrollPane bg = new ScrollPane(new Table() {{
                 FileHandle bgFile = Gdx.files.internal("bg");
                 int index = 0;
@@ -53,14 +57,19 @@ public class ModelControllerView extends Group {
 
                 }
                 pack();
-                align(Align.topLeft);
+                align(Align.center);
             }});
             addActor(bg);
             bg.setSize(600, 300);
-            bg.setY(getHeight() - 100, Align.top);
+            bg.setY(getHeight(), Align.top);
+            bgBG.setSize(bg.getWidth(),bg.getHeight()+50);
+            bgBG.setPosition(bg.getX(Align.center),bg.getY(Align.center),Align.center);
+            bgBG.setColor(Color.GRAY);
         }
 
         {
+            Image bgBG = Layer.getShadow();
+            addActor(bgBG);
             ScrollPane bg = new ScrollPane(new Table() {{
                 FileHandle bgFile = Gdx.files.internal("model");
                 for (FileHandle fileHandle : bgFile.list()) {
@@ -74,16 +83,27 @@ public class ModelControllerView extends Group {
                 align(Align.topLeft);
             }});
             addActor(bg);
-            bg.setSize(600, 300);
-            bg.setY(getHeight() - 100 - 300 - 100, Align.top);
+            bg.setSize(600, 200);
+            bg.setY(getHeight() - 400, Align.top);
+
+            bgBG.setSize(bg.getWidth(),bg.getHeight()+50);
+            bgBG.setPosition(bg.getX(Align.center),bg.getY(Align.center),Align.center);
+            bgBG.setColor(Color.valueOf("#ee3333FF"));
         }
 
         {
+            Image bgBG = Layer.getShadow();
+            addActor(bgBG);
             ScrollPane bg = new ScrollPane(new Table() {{
                 FileHandle bgFile = Gdx.files.internal("model");
+                int i = 0;
                 for (FileHandle fileHandle : bgFile.list()) {
                     if (fileHandle.name().endsWith(".png")){
-                        row();
+                        i++;
+                        if (i>=3) {
+                            i = 0;
+                            row();
+                        }
                         BgItem bgItem = new BgItem("model/",fileHandle, new Runnable() {
                             @Override
                             public void run() {
@@ -94,11 +114,15 @@ public class ModelControllerView extends Group {
                     }
                 }
                 pack();
-                align(Align.topLeft);
+                align(Align.center);
             }});
             addActor(bg);
             bg.setSize(600, 300);
-            bg.setY(getHeight() - 100 - 600 - 100, Align.top);
+            bg.setX(getWidth()/2f,Align.center);
+            bg.setY(getHeight() - 700, Align.top);
+            bgBG.setSize(bg.getWidth(),bg.getHeight());
+            bgBG.setPosition(bg.getX(Align.center),bg.getY(Align.center),Align.center);
+            bgBG.setColor(Color.BROWN);
         }
 
 
@@ -127,6 +151,7 @@ public class ModelControllerView extends Group {
                 }
             });
             pack();
+            setPosition(ModelControllerView.this.getWidth()/2f,50,Align.bottom);
         }};
         addActor(table);
     }
